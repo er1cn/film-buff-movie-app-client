@@ -1,33 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { POSTER_SIZE, BACKDROP_SIZE, BASE_URL } from '../config';
+import { BASE_URL } from '../config'
+import Grid from './Grid';
+import Search from './Header/Search';
+import MovieItem from './Grid/MovieItem';
 
-import NoImage from '../images/no_image.jpg';
+function Home() {
+    const [movies, setMovies] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [query, setQuery] = useState('');
 
-const Home = () => {
-    const [data, setData] = useState();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    // const { title, poster, plot, genre, director } = movies
+    
+
 
     useEffect(() => {
-        axios("https://film-buff-movie-app-backend.herokuapp.com/movies")
-            .then(response => {
-                setData(response.data)
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-                setError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            })
-    }, []);
+        const fetchMovies = async () => {
+            const result = await axios.get(`${BASE_URL}movies?title=${query}`);
+            
+            console.log(result.data)
+            setMovies(result.data)
+            setLoading(false)
+        }
 
-    if (loading) return "Loading...";
-    if (error) return "Error!";
+        fetchMovies()
 
-    return <div>Home Page</div>;
+    }, [query]);
 
+    
+
+    console.log(movies)
+
+    
+
+
+    return (
+      <>
+        <Search getQuery={(q) => setQuery(q)} />
+        <Grid header="Popular Movies">
+          {movies.map((movie) => (
+            <MovieItem key={movie.id} movie={movie} />
+          ))}
+        </Grid>
+      </>
+    );
 };
+  
+
+   
 
 export default Home;
