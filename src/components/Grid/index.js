@@ -1,17 +1,20 @@
 import React from 'react';
-
-import { Wrapper, Content } from './Grid.styles';
+import { Wrapper, Content } from '../Grid/Grid.styles'
 import Spinner from '../Header/Spinner';
+import MovieItem from './MovieItem';
 
 
-const Grid = ({ header, children, loading }) => {
+const Grid = ({ movies, loading }) => {
        return loading ? (
          <Spinner />
        ) : (
          <Wrapper>
-           <h1>{header}</h1>
            <Content>
-                    {children}   
+             <section className="cards">
+               {movies.map((movie) => (
+                 <MovieItem key={movie.id} movie={movie}></MovieItem>
+               ))}
+             </section>
            </Content>
          </Wrapper>
        );

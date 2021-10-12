@@ -3,14 +3,14 @@ import axios from 'axios';
 import { BASE_URL } from '../config'
 import Grid from './Grid';
 import Search from './Header/Search';
-import MovieItem from './Grid/MovieItem';
+
 
 function Home() {
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState('');
 
-    // const { title, poster, plot, genre, director } = movies
+    
     
 
 
@@ -35,15 +35,17 @@ function Home() {
 
 
     return (
-      <>
-        <Search getQuery={(q) => setQuery(q)} />
-        <Grid header="Popular Movies">
-          {movies.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
-          ))}
-        </Grid>
-      </>
-    );
+        <>
+            <Search getQuery={(q) => setQuery(q)}/>
+            <Grid
+                header='Popular Movies'
+                loading={loading}
+                movies={movies}
+
+            />
+            
+        </>
+    )
 };
   
 

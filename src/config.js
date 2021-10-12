@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:3000/";
+const BASE_URL = "https://film-buff-movie-app-backend.herokuapp.com/";
 
 const BACKDROP_SIZE = "w1280";
 
