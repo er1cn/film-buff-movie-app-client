@@ -5,6 +5,7 @@ import { BASE_URL } from '../config';
 function Home() {
  
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchterm] = useState('');
 
     useEffect(() => {
         fetch(`${BASE_URL}movies`)
@@ -15,13 +16,45 @@ function Home() {
         })
     }, [])
 
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+      
+        if (searchTerm) {
+          fetch(`${BASE_URL}movies + searchTerm`)
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              setMovies(data);
+            });
+
+          setSearchterm("");
+        }
+    };
+
+    const handleOnChange = (e) => {
+        setSearchterm(e.target.value);
+    }
+
 
     return (
-      <div>
-        {movies.map((movie) => (
-          <Movie />
-        ))}
-      </div>
+      <>
+        <header>
+          <form onSubmit={handleOnSubmit}>
+                    <input
+                        className="Search"
+                        type="search"
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={handleOnChange}
+                    />
+          </form>
+        </header>
+       <div className="movie-container">
+          {movies.map((movie) => (
+            <Movie key={movie.id} {...movie} />
+          ))}
+        </div>
+      </>
     );
 }
 
