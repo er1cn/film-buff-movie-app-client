@@ -1,55 +1,31 @@
+import React, { useState } from "react";
+import { BASE_URL } from "./config";
 
-
-
-function SignUp({ onLogin }) {
+function Login({ onLogin }) {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    fetch("/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
-      }),
-    })
-      .then((r) => r.json())
-      .then(onLogin);
-  }
+  
 
-    return (
-      <main className="form-signin">
-       <form onSubmit={handleSubmit}>
-         <label htmlFor="username">Username:</label>
-           <input
-             type="text"
-              id="username"
-              className='form-control'
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+  return (
+    <div>
+     <form>
+       <h1 className="h3 mb-3 fw-normal"> Please sign in</h1>    
+        <input
+                  type="text"
+                  className="form-control"
+                  placeholder="username"
+                  required
               />
-        <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            className='form-control'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            />
-      <label htmlFor="password_confirmation">Confirm Password:</label>
-         <input
-            type="password"
-            id="password_confirmation"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            />
-      <button className="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-    </form>
+              <input
+                  type="password"
+                  className="form-control"
+                  placeholder="password"
+                  required
+              />
+        <button className="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+      </form>
+    </div>
   );
 }
+
+export default Login;

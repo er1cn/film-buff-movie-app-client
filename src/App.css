@@ -33,12 +33,13 @@ body {
 
 .Search {
     background-color: transparent;
-    border: 2px solid #22254b;
+    border: 2px solid #373a6a;
     border-radius: 50px;
     color: white;
     font-size: 1.2rem;
     font-family: inherit;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 2.5rem;
+    margin: 1rem;
 }
 
 .Search:focus {
@@ -87,3 +88,33 @@ body {
     transform: translateY(0%);
 }
 
+.nav-link-active {
+    align-items: center;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

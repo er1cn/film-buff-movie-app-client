@@ -11,12 +11,13 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
   max-width: var(--maxWidth);
-  padding: 20px 0;
+  padding: 0;
+  margin-bottom: 20px;
 `;
 
 
 export const LogoImg = styled.img`
-  width: 200px;
+  width: 150px;
 
   @media screen and (max-width: 500px) {
       width: 150px;

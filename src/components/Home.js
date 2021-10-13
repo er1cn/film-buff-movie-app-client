@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Movie from '../components/Movie'
 import { BASE_URL } from '../config';
+import Header from './Header';
+
+
 
 function Home() {
  
@@ -37,7 +40,8 @@ function Home() {
 
 
     return (
-      <>
+        <>
+        <Header />
         <header>
           <form onSubmit={handleOnSubmit}>
                     <input
