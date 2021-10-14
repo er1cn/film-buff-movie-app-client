@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { BASE_URL } from "./config";
+import React from "react";
 
-function Login({ onLogin }) {
-  const [username, setUsername] = useState("");
+
+function Login() {
+ 
 
   
 

@@ -1,13 +1,32 @@
 import React, {useState} from 'react'
+import { BASE_URL } from './config';
 
 function SignUp() {
        
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-     
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch(`${BASE_URL}users/signup`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username,
+        password
+      })
+    });
+
+    const content = await response.json();
+
+    console.log(content);
+   
+  }
+
+
       return (
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1 className="h3 mb-3 fw-normal"> Please sign up</h1>
           <input
             type="text"
