@@ -46,7 +46,7 @@ function Home() {
           <form onSubmit={handleOnSubmit}>
                     <input
                         className="Search"
-                        type="search"
+                        type="text"
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={handleOnChange}

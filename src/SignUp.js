@@ -3,19 +3,22 @@ import { BASE_URL } from './config';
 
 function SignUp() {
        
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState(['']);
+  const [password, setPassword] = useState(['']);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`${BASE_URL}users/signup`, {
+    const response = await fetch(`${BASE_URL}users`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       body: JSON.stringify({
         username,
         password
-      })
+      }),
     });
 
     const content = await response.json();
@@ -33,14 +36,14 @@ function SignUp() {
             className="form-control"
             placeholder="username"
             required
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
           />
           <input
             type="password"
             className="form-control"
             placeholder="password"
             required
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
           <button className="w-100 btn btn-lg btn-primary" type="submit">
             Sign up
