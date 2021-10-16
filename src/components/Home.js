@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Movie from '../components/Movie'
 import { BASE_URL } from '../config';
-import Header from './Header';
+
 
 
 
 function Home() {
  
     const [movies, setMovies] = useState([]);
-    const [searchTerm, setSearchterm] = useState('');
+  const [searchTerm, setSearchterm] = useState('');
+
 
     useEffect(() => {
         fetch(`${BASE_URL}movies`)
@@ -23,7 +24,7 @@ function Home() {
         e.preventDefault();
       
         if (searchTerm) {
-          fetch(`${BASE_URL}movies + searchTerm`)
+          fetch(`${BASE_URL}movies`)
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
@@ -40,8 +41,8 @@ function Home() {
 
 
     return (
-        <>
-        <Header />
+      <>
+        
         <header>
           <form onSubmit={handleOnSubmit}>
                     <input
@@ -54,9 +55,10 @@ function Home() {
           </form>
         </header>
        <div className="movie-container">
-          {movies.map((movie) => (
+          {movies.length > 0 &&
+            movies.map((movie) => 
             <Movie key={movie.id} {...movie} />
-          ))}
+          )}
         </div>
       </>
     );
